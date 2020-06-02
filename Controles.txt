@@ -1,1 +1,2 @@
-aperte esc para sair
+ pressione  esc para sair
+ pressione  1 para mudar para a tela q desenha um circulo 

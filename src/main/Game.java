@@ -37,6 +37,9 @@ public class Game extends Canvas implements Runnable , KeyListener,MouseListener
 	public UI ui;
 	public Mundo mundo;
 	
+	public static boolean changesc = false;
+	public static int graus=0;
+	
 	public static int  cx =10;
 	public static int cy=10;
 	public Game() {
@@ -93,6 +96,7 @@ public class Game extends Canvas implements Runnable , KeyListener,MouseListener
 	//FPS ATUALIZAÇÂO  DE EVENTOS
 	public void update() {
 	ui.update();
+	
 		
 	}
 	
@@ -105,13 +109,22 @@ public class Game extends Canvas implements Runnable , KeyListener,MouseListener
 		}
 		
 		Graphics g=bs.getDrawGraphics();
+		
+		if( !changesc) {
 		g.setColor(Color.CYAN);
 		g.fillRect(0, 0, WIDTH*SCALE, HEIGHT*SCALE);
-		g.setColor( Color.YELLOW);
+	
 		g.fillOval((WIDTH*SCALE/2)-30, (HEIGHT*SCALE/2)-30, 60, 60);
 		//SOL E LUA
+		
 		ui.render(g);
-		mundo.render(g);
+	//mundo.render(g);
+		}
+		else {
+
+			ui.render(g);
+			
+		}
 		g.dispose();
 		
 		
@@ -211,7 +224,9 @@ public class Game extends Canvas implements Runnable , KeyListener,MouseListener
 	if(e.getKeyCode()==KeyEvent.VK_ESCAPE) {
 		System.exit(1);
 		}
-	
+	if(e.getKeyCode() == KeyEvent.VK_1) {
+		changesc = true;
+	}
 	if(e.getKeyCode()==KeyEvent.VK_D) {
 			cx++;
 		}

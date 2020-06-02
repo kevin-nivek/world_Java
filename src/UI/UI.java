@@ -15,10 +15,11 @@ public class UI {
  public static double posy=25;
  public static int pp=1; 
 public int frames;
-
+public int graus=0;
 
 public void update() {
 	frames++;
+	
 	if(minutos ==0) {
 		if(horas ==18 || horas ==6 ){
 			posx=-30;
@@ -40,7 +41,10 @@ public void update() {
 		minutos++;
 		posx = (Game.WIDTH*Game.SCALE * (qtdmin*0.001394))-30;
 		posy = posy-(0.153*sub_des);
-		
+		graus++;
+		if(graus > 360) {
+			graus=0;
+		}
 		
 		qtdmin++;
 		
@@ -87,7 +91,21 @@ public void render(Graphics g) {
 		formatTime+=minutos;
 	}
 	
+	if(Game.changesc) {
+	g.fillRect(0, 0, Game.WIDTH*Game.SCALE, Game.HEIGHT*Game.SCALE);	
+	g.setColor(Color.BLUE);
+	String grsarc = "GRAUS"+graus;
+		for(int i =0; i<graus;i++ ) {
+			
+			g.fillArc(((Game.WIDTH*Game.SCALE)/2)-150, ((Game.HEIGHT*Game.SCALE)/2)-150, 300, 300, 0, i);
+			
+			
+		}
+		g.setColor(Color.white);
+		g.setFont(new Font("arial", Font.BOLD,25));
+		g.drawString(grsarc,((Game.WIDTH*Game.SCALE)/2), ((Game.HEIGHT*Game.SCALE)/2));
 	
+	}
 	g.setColor(Color.white);
 	g.setFont(new Font("arial", Font.BOLD,25));
 	g.drawString(formatTime, 10, 30);
